@@ -12,6 +12,8 @@ import json
 import logging
 import urllib.request
 import urllib.parse
+import shutil
+import subprocess
 
 # Setup Logger with standard formatting
 logging.basicConfig(
@@ -33,6 +35,28 @@ def natural_sort_key(s):
     Key function for natural alphanumeric sorting (e.g. "2.1" comes before "10.1").
     """
     return [int(text) if text.isdigit() else text.lower() for text in re.split(r'(\d+)', s)]
+
+
+def get_mp3_duration(file_path):
+    """
+    Get duration of an MP3 file in seconds using ffprobe.
+    Returns 0.0 if not found or on error.
+    """
+    if not shutil.which('ffprobe'):
+        return 0.0
+    try:
+        cmd = [
+            'ffprobe',
+            '-v', 'error',
+            '-show_entries', 'format=duration',
+            '-of', 'default=noprint_wrappers=1:nokey=1',
+            file_path
+        ]
+        result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, timeout=5, check=True)
+        return round(float(result.stdout.strip()), 1)
+    except Exception as e:
+        logger.warning(f"Could not read duration for {file_path}: {e}")
+        return 0.0
 
 
 # Regex patterns to parse MP3 filenames from remote directories (HTML or S3 XML listing)
@@ -186,6 +210,22 @@ def generate_playlist(dir, output, base_url):
     if resolved_base_url and not resolved_base_url.endswith('/'):
         resolved_base_url += '/'
 
+    # Resolve track durations
+    tracks_list = []
+    for f_name in mp3_files:
+        local_file_path = f_name
+        if not is_remote and dir != '.':
+            local_file_path = os.path.join(dir, f_name)
+        
+        duration = 0.0
+        if os.path.exists(local_file_path):
+            duration = get_mp3_duration(local_file_path)
+            
+        tracks_list.append({
+            "file": f_name,
+            "duration": duration
+        })
+
     # 1. Construct JS format with metadata and tracks
     js_content = (
         "// Auto-generated playlist file. Do not edit manually.\n"
@@ -195,11 +235,11 @@ def generate_playlist(dir, output, base_url):
         f'const baseUrl = "{resolved_base_url}";\n'
         "const tracks = [\n"
     )
-    for f_name in mp3_files:
-        escaped_name = f_name.replace('"', '\\"')
-        js_content += f'  "{escaped_name}",\n'
+    for track in tracks_list:
+        escaped_file = track["file"].replace('"', '\\"')
+        js_content += f'  {{ "file": "{escaped_file}", "duration": {track["duration"]} }},\n'
     
-    if mp3_files:
+    if tracks_list:
         js_content = js_content[:-2] + "\n"
     js_content += "];\n"
 
@@ -208,7 +248,7 @@ def generate_playlist(dir, output, base_url):
         "title": title,
         "subtitle": subtitle,
         "baseUrl": resolved_base_url,
-        "tracks": mp3_files
+        "tracks": tracks_list
     }
     json_content = json.dumps(playlist_data, indent=2, ensure_ascii=False)
 

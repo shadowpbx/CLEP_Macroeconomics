@@ -569,6 +569,7 @@
   <header>
     <h1 id="mainTitle">Macroeconomics</h1>
     <p id="mainSubtitle">CLEP Examination Prep Playlist</p>
+    <p id="playlistMeta" style="font-size: 0.85rem; color: var(--accent-secondary); margin-top: 0.35rem; font-weight: 500;"></p>
   </header>
 
   <main class="app-container">
@@ -788,6 +789,36 @@
       // Render and initialize states once tracks are loaded
       renderPlaylist();
       initAppState();
+      updatePlaylistMeta();
+    }
+
+    function updatePlaylistMeta() {
+      let totalSeconds = 0;
+      let trackCount = tracks.length;
+      
+      tracks.forEach(track => {
+        totalSeconds += getTrackDuration(track);
+      });
+
+      const metaEl = document.getElementById('playlistMeta');
+      if (metaEl) {
+        if (trackCount === 0) {
+          metaEl.textContent = "";
+          return;
+        }
+        
+        let timeStr = "";
+        if (totalSeconds > 0) {
+          const hours = Math.floor(totalSeconds / 3600);
+          const minutes = Math.floor((totalSeconds % 3600) / 60);
+          if (hours > 0) {
+            timeStr = ` • ${hours} hr ${minutes} min`;
+          } else {
+            timeStr = ` • ${minutes} min`;
+          }
+        }
+        metaEl.textContent = `${trackCount} Lectures${timeStr}`;
+      }
     }
 
     // Initialize application state from LocalStorage to support seamless walking/mail delivery resume
@@ -841,10 +872,22 @@
       }
     }
 
+    // Helper to get filename from a track object or string
+    function getTrackFilename(track) {
+      if (!track) return "";
+      return typeof track === 'string' ? track : track.file;
+    }
+
+    // Helper to get duration from a track object or string
+    function getTrackDuration(track) {
+      if (!track) return 0;
+      return typeof track === 'object' ? (track.duration || 0) : 0;
+    }
+
     // Clean track visual names for UI display
     function formatTrackName(filename) {
       // Remove '.mp3' extension
-      let name = filename.replace('.mp3', '');
+      let name = getTrackFilename(filename).replace('.mp3', '');
       return name;
     }
 
@@ -880,10 +923,13 @@
         li.setAttribute('role', 'button');
         li.setAttribute('tabindex', '0');
 
+        const duration = getTrackDuration(track);
+        const durationStr = duration > 0 ? ` • ${formatTime(duration)}` : "";
+
         li.innerHTML = `
           <div class="track-item-info">
             <div class="track-item-title">${cleanName}</div>
-            <div class="track-item-sub">Audio Lecture</div>
+            <div class="track-item-sub">Audio Lecture${durationStr}</div>
           </div>
           ${index === currentTrackIndex ? `
             <div class="track-indicator">
@@ -913,7 +959,7 @@
       if (index < 0 || index >= tracks.length) return;
       
       currentTrackIndex = index;
-      const trackFilename = tracks[index];
+      const trackFilename = getTrackFilename(tracks[index]);
       
       // Load source file (relative path resolves correctly locally and on GitHub Pages)
       // Resolve absolute URL using R2 base URL if present
