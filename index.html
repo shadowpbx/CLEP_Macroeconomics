@@ -576,11 +576,12 @@
         overflow-x: hidden;
         display: flex;
         flex-direction: column;
-        padding: 0.5rem;
+        padding: 0;
       }
 
       header {
-        margin-top: 0.25rem;
+        margin-top: 0.5rem;
+        padding: 0 0.75rem;
         flex-shrink: 0;
       }
 
@@ -608,11 +609,17 @@
 
       .player-card {
         position: sticky;
-        top: 0.5rem;
+        top: 0;
+        left: 0;
+        right: 0;
         z-index: 100;
         flex-shrink: 0;
         padding: 0.75rem;
-        background: rgba(15, 23, 42, 0.88); /* More opaque on mobile for better control readability */
+        background: #0f172a; /* Solid background to block scrolling text */
+        border-radius: 0 0 20px 20px;
+        border-left: none;
+        border-right: none;
+        border-top: none;
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
       }
 
@@ -701,6 +708,7 @@
       .playlist-panel {
         overflow: visible;
         padding: 0.75rem;
+        margin: 0 0.5rem;
       }
 
       .playlist-header {
