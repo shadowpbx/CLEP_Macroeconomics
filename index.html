@@ -741,13 +741,9 @@
         tracks.length = 0;
         tracks.push(...newTracks);
         
-        // Resolve R2 Base URL from localStorage (user override) or playlist.json config
-        const storedR2Url = localStorage.getItem('clep_player_r2_url');
-        if (storedR2Url !== null) {
-          r2BaseUrl = storedR2Url;
-        } else {
-          r2BaseUrl = data.baseUrl || "";
-        }
+        // Resolve R2 Base URL from playlist.json config (ignoring local storage override)
+        localStorage.removeItem('clep_player_r2_url');
+        r2BaseUrl = data.baseUrl || "";
         r2BaseUrlInput.value = r2BaseUrl;
 
         // Render main title and subtitle dynamically from playlist.json config
@@ -766,11 +762,9 @@
         if (typeof tracks !== 'undefined' && tracks.length > 0) {
           Log.info(`Fallback loaded ${tracks.length} tracks from legacy playlist.js`);
           
-          // Resolve base URL from playlist.js if available and not overridden in localStorage
-          const storedR2Url = localStorage.getItem('clep_player_r2_url');
-          if (storedR2Url !== null) {
-            r2BaseUrl = storedR2Url;
-          } else if (typeof baseUrl !== 'undefined') {
+          // Resolve base URL from playlist.js if available
+          localStorage.removeItem('clep_player_r2_url');
+          if (typeof baseUrl !== 'undefined') {
             r2BaseUrl = baseUrl;
           } else {
             r2BaseUrl = "";
@@ -785,7 +779,7 @@
           }
         } else {
           Log.error("No playlist data found. Please generate playlist.json or playlist.js.");
-          r2BaseUrl = localStorage.getItem('clep_player_r2_url') || "";
+          r2BaseUrl = "";
         }
         
         r2BaseUrlInput.value = r2BaseUrl;
@@ -842,7 +836,6 @@
         localStorage.setItem('clep_player_loop_limit', targetLoopLimit);
         localStorage.setItem('clep_player_time', audio.currentTime);
         localStorage.setItem('clep_player_speed', audio.playbackRate);
-        localStorage.setItem('clep_player_r2_url', r2BaseUrlInput.value.trim());
       } catch (err) {
         Log.error("Error storing playback state", err);
       }
@@ -1165,13 +1158,6 @@
     // Speed Selector Handler
     speedSelect.addEventListener('change', () => {
       audio.playbackRate = parseFloat(speedSelect.value);
-      savePlaybackState();
-    });
-
-    // R2 Base URL change handler
-    r2BaseUrlInput.addEventListener('input', (e) => {
-      r2BaseUrl = e.target.value.trim();
-      localStorage.setItem('clep_player_r2_url', r2BaseUrl);
       savePlaybackState();
     });
 
