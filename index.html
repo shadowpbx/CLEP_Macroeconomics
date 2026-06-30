@@ -737,12 +737,6 @@
     
     <!-- Left Hand: Audio Player Controls -->
     <section class="glass-panel player-card" aria-label="Audio Controls">
-      <div class="album-art-container" id="artContainer">
-        <div class="album-art-inner">
-          <span class="material-icons-round">trending_up</span>
-        </div>
-      </div>
-
       <div class="track-details">
         <div class="track-title" id="nowPlayingTitle">No track selected</div>
         <div class="track-subtitle" id="nowPlayingSubtitle">Select a lecture to begin</div>
@@ -821,13 +815,7 @@
     <!-- Right Hand: Tracks Directory Panel -->
     <section class="glass-panel playlist-panel" aria-label="Playlist Panel">
       <div class="playlist-header">
-        <h2 style="font-size: 1.1rem; font-weight: 600;">Track List</h2>
-        
-        <!-- Quick Search -->
-        <div class="search-box">
-          <span class="material-icons-round">search</span>
-          <input type="text" id="searchBar" placeholder="Search lectures..." aria-label="Search lectures">
-        </div>
+        <h2 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 0.25rem;">Track List</h2>
       </div>
 
       <ul class="track-list" id="trackListContainer">
@@ -885,7 +873,6 @@
     const loopDec = document.getElementById('loopDec');
     const loopBadge = document.getElementById('loopBadge');
     const loopBadgeText = document.getElementById('loopBadgeText');
-    const searchBar = document.getElementById('searchBar');
     const trackListContainer = document.getElementById('trackListContainer');
     const r2BaseUrlInput = document.getElementById('r2BaseUrlInput');
 
@@ -1169,7 +1156,7 @@
       isPlaying = true;
       audio.play().then(() => {
         playIcon.textContent = 'pause';
-        artContainer.classList.add('playing');
+        if (artContainer) artContainer.classList.add('playing');
         updatePlaylistIndicators();
         if ('mediaSession' in navigator) {
           navigator.mediaSession.playbackState = 'playing';
@@ -1185,7 +1172,7 @@
       isPlaying = false;
       audio.pause();
       playIcon.textContent = 'play_arrow';
-      artContainer.classList.remove('playing');
+      if (artContainer) artContainer.classList.remove('playing');
       updatePlaylistIndicators();
       if ('mediaSession' in navigator) {
         navigator.mediaSession.playbackState = 'paused';
@@ -1366,12 +1353,6 @@
     speedSelect.addEventListener('change', () => {
       audio.playbackRate = parseFloat(speedSelect.value);
       savePlaybackState();
-    });
-
-    // Search Bar Input Filter Handler
-    searchBar.addEventListener('input', (e) => {
-      trackSearchQuery = e.target.value;
-      renderPlaylist();
     });
 
     // Initialize Application
