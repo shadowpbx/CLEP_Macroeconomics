@@ -181,6 +181,8 @@
       line-height: 1.4;
       white-space: normal;
       word-break: break-word;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
       margin-bottom: 0.35rem;
     }
 
@@ -520,6 +522,8 @@
       font-weight: 500;
       white-space: normal;
       word-break: break-word;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
       line-height: 1.35;
       color: var(--text-main);
     }
@@ -619,15 +623,28 @@
 
       .track-details {
         margin-bottom: 0.5rem;
+        width: 100%;
+        overflow: hidden;
       }
 
       .track-title {
         font-size: 1rem;
         margin-bottom: 0.15rem;
+        white-space: normal !important;
+        word-break: break-word !important;
+        overflow-wrap: break-word !important;
+        word-wrap: break-word !important;
       }
 
       .track-subtitle {
         font-size: 0.75rem;
+      }
+
+      .track-item-title {
+        white-space: normal !important;
+        word-break: break-word !important;
+        overflow-wrap: break-word !important;
+        word-wrap: break-word !important;
       }
 
       .timeline-container {
