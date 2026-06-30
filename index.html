@@ -562,6 +562,143 @@
     footer a:hover {
       text-decoration: underline;
     }
+
+    /* Mobile View Overrides (Sticking player to top and scrolling playlist at bottom) */
+    @media (max-width: 767px) {
+      body {
+        height: 100vh;
+        height: 100dvh;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        padding: 0.5rem;
+      }
+
+      header {
+        margin-top: 0.25rem;
+        flex-shrink: 0;
+      }
+
+      header h1 {
+        font-size: 1.4rem;
+      }
+
+      header p {
+        font-size: 0.8rem;
+      }
+
+      #playlistMeta {
+        margin-top: 0.15rem !important;
+        font-size: 0.75rem !important;
+      }
+
+      .app-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        gap: 0.75rem;
+      }
+
+      .player-card {
+        flex-shrink: 0;
+        padding: 0.75rem;
+      }
+
+      .album-art-container {
+        width: 90px;
+        height: 90px;
+        margin-bottom: 0.5rem;
+      }
+
+      .album-art-inner .material-icons-round {
+        font-size: 2.5rem;
+      }
+
+      .track-details {
+        margin-bottom: 0.5rem;
+      }
+
+      .track-title {
+        font-size: 1rem;
+        margin-bottom: 0.15rem;
+      }
+
+      .track-subtitle {
+        font-size: 0.75rem;
+      }
+
+      .timeline-container {
+        margin-bottom: 0.5rem;
+      }
+
+      .time-stamps {
+        margin-top: 0.25rem;
+      }
+
+      .controls-row {
+        margin-bottom: 0.5rem;
+        gap: 0.75rem;
+      }
+
+      .btn-large {
+        width: 48px;
+        height: 48px;
+      }
+
+      .btn-large .material-icons-round {
+        font-size: 1.75rem;
+      }
+
+      .btn-small {
+        width: 36px;
+        height: 36px;
+      }
+
+      .btn-small .material-icons-round {
+        font-size: 1.1rem;
+      }
+
+      .settings-grid {
+        margin-bottom: 0;
+        padding: 0.5rem 0.75rem;
+        gap: 0.4rem;
+      }
+
+      .setting-item {
+        font-size: 0.8rem;
+      }
+
+      .playlist-panel {
+        flex: 1;
+        overflow: hidden;
+        padding: 0.75rem;
+      }
+
+      .playlist-header {
+        margin-bottom: 0.5rem;
+      }
+
+      .search-box {
+        margin-top: 0.25rem;
+        padding: 0.35rem 0.5rem;
+      }
+
+      .track-list {
+        overflow-y: auto;
+      }
+
+      .track-item {
+        padding: 0.5rem 0.65rem;
+        margin-bottom: 0.35rem;
+      }
+
+      footer {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
