@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Course Companion - Written Guide</title>
-  <meta name="description" content="Study notes, written tutorials, and illustrations to accompany the audio lecture series.">
+  <title>Course Companion - Written Guide & Sandbox</title>
+  <meta name="description" content="Study notes, written tutorials, equations, and interactive graph utilities to accompany the audio lecture series.">
   
   <!-- Modern Typography & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,7 +55,7 @@
       max-width: 800px;
       display: flex;
       flex-direction: column;
-      gap: 2rem;
+      gap: 1.5rem;
     }
 
     /* Header Section */
@@ -64,7 +64,7 @@
       flex-direction: column;
       gap: 0.5rem;
       border-bottom: 1px solid var(--panel-border);
-      padding-bottom: 1.5rem;
+      padding-bottom: 1.25rem;
     }
 
     .nav-row {
@@ -123,68 +123,58 @@
 
     @media (min-width: 768px) {
       .card {
-        padding: 2.25rem;
+        padding: 2rem;
       }
     }
 
     h2 {
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       color: var(--text-main);
       display: flex;
       align-items: center;
       gap: 0.6rem;
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       padding-bottom: 0.75rem;
+      margin-bottom: 0.25rem;
     }
 
     h2 .material-icons-round {
       color: var(--accent-color);
     }
 
-    p {
-      font-size: 1rem;
-      line-height: 1.6;
-      color: #e2e8f0;
+    /* Interactive Graph Lab Link Card Style */
+    .interactive-card {
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+    }
+    .interactive-card:hover {
+      border-color: var(--accent-secondary);
+      box-shadow: 0 0 20px rgba(6, 182, 212, 0.25), var(--shadow-lg);
+      transform: translateY(-2px);
     }
 
-    /* List items styling */
-    ul, ol {
-      margin-left: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      color: #cbd5e1;
-      line-height: 1.5;
-    }
-
-    li strong {
-      color: var(--text-main);
-    }
-
-    /* Graphic/Image Placeholder Box */
-    .image-placeholder {
-      width: 100%;
-      background: rgba(0, 0, 0, 0.25);
-      border: 2px dashed rgba(255, 255, 255, 0.1);
+    .icon-glow {
+      background: rgba(6, 182, 212, 0.1);
       border-radius: 12px;
-      padding: 3rem 1.5rem;
+      padding: 0.75rem;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      gap: 0.75rem;
-      color: var(--text-muted);
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+    }
+    .interactive-card:hover .icon-glow {
+      background: rgba(6, 182, 212, 0.2);
+      box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);
     }
 
-    .image-placeholder .material-icons-round {
-      font-size: 3rem;
-      color: rgba(255, 255, 255, 0.15);
-    }
-
-    .image-placeholder span.label {
-      font-weight: 500;
-      color: var(--text-main);
+    .card-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
     }
 
     /* Highlight box style */
@@ -208,6 +198,79 @@
       color: #94d8e6;
     }
 
+    /* Markdown Body Styling */
+    .markdown-body {
+      color: #cbd5e1;
+      line-height: 1.65;
+    }
+
+    .markdown-body h3 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-top: 2rem;
+      margin-bottom: 0.8rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .markdown-body h3::before {
+      content: 'book';
+      font-family: 'Material Icons Round';
+      font-size: 1.1rem;
+      color: var(--accent-color);
+    }
+
+    .markdown-body h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #e2e8f0;
+      margin-top: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .markdown-body p {
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      color: #e2e8f0;
+    }
+
+    .markdown-body ul, .markdown-body ol {
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .markdown-body li {
+      font-size: 0.95rem;
+      color: #cbd5e1;
+    }
+
+    .markdown-body strong {
+      color: var(--text-main);
+    }
+
+    .markdown-body code {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 0.15rem 0.35rem;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 0.85rem;
+      color: #f472b6; /* pinkish code highlight */
+    }
+
+    /* Keyframe animation for spinner */
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
     /* Footer Section */
     footer {
       text-align: center;
@@ -215,6 +278,7 @@
       border-top: 1px solid var(--panel-border);
       font-size: 0.8rem;
       color: rgba(255, 255, 255, 0.25);
+      margin-top: 1rem;
     }
   </style>
 </head>
@@ -230,52 +294,91 @@
         </a>
       </div>
       <h1>Written Study Companion</h1>
-      <p>This is the placeholder template for your course study notes, illustrations, diagrams, and written summaries. Keep this file named <code>companion.html</code> in your project directory to access it anytime from the player.</p>
+      <p>Combine written reference guides, equations, and interactive graph simulations to prepare for the CLEP exam.</p>
     </header>
 
-    <main style="display: flex; flex-direction: column; gap: 2rem;">
+    <main style="display: flex; flex-direction: column; gap: 1.5rem;">
 
-      <!-- Card 1: Setup Instruction -->
-      <section class="card">
-        <h2>
-          <span class="material-icons-round">edit_note</span>
-          How to Edit This Companion
-        </h2>
-        <p>To populate this study companion with your actual course materials, follow these simple steps:</p>
-        <ol>
-          <li>Open the file <code>companion.html</code> in your favorite code editor (e.g., VS Code).</li>
-          <li>Modify the title, headings, and text inside the card sections to write your tutorials.</li>
-          <li>Drop diagrams and graphics into your local workspace and link them using standard HTML <code>&lt;img&gt;</code> tags.</li>
-          <li>Save the file and commit/push it to your GitHub repository alongside the player.</li>
-        </ol>
-        <div class="tip-box">
-          <span class="material-icons-round">info</span>
-          <p>You can duplicate the <code>&lt;section class="card"&gt;</code> blocks inside the HTML to create multiple chapters, study units, or reference tables.</p>
+      <!-- Interactive Graph Sandbox Launcher Card -->
+      <a href="https://shadowpbx.github.io/CLEP_Macroeconomics_Graphs/" target="_blank" class="card interactive-card">
+        <div style="display: flex; align-items: center; gap: 1.25rem;">
+          <div class="icon-glow">
+            <span class="material-icons-round" style="font-size: 2.25rem; color: var(--accent-secondary);">analytics</span>
+          </div>
+          <div style="flex: 1; min-width: 0;">
+            <div class="card-title-row">
+              <h3 style="border: none; padding: 0; margin: 0; font-size: 1.25rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.4rem; color: var(--text-main);">
+                Launch Economics Graph Lab
+              </h3>
+              <span class="material-icons-round" style="font-size: 1.2rem; color: var(--text-muted); padding-left: 0.5rem;">open_in_new</span>
+            </div>
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin: 0.2rem 0 0 0; line-height: 1.4;">
+              Open the interactive graphing workspace in a new tab. Practice drawing supply/demand shifts, AD/AS models, Phillips curves, and loanable funds markets.
+            </p>
+          </div>
         </div>
-      </section>
+      </a>
 
-      <!-- Card 2: Sample Illustrated Section -->
+      <!-- Equations Reference Section (Loaded dynamically from equations.md) -->
       <section class="card">
         <h2>
-          <span class="material-icons-round">insert_photo</span>
-          Sample Graphic & Illustration Layout
+          <span class="material-icons-round">auto_stories</span>
+          Equations & Core Concepts Reference
         </h2>
-        <p>Use the container below as a reference for placing charts, graphs, or formula illustrations in your notes. When you have an image, replace the placeholder box with a standard image tag: <code>&lt;img src="images/filename.png" style="width: 100%; border-radius: 12px;"&gt;</code>.</p>
         
-        <div class="image-placeholder">
-          <span class="material-icons-round">analytics</span>
-          <span class="label">Course Graphic Placeholder</span>
-          <p style="font-size: 0.85rem; color: var(--text-muted);">Width: 100% (Responsive) • Border Radius: 12px</p>
+        <div id="equations-content" class="markdown-body">
+          <div style="text-align: center; padding: 3rem 1rem; color: var(--text-muted);">
+            <span class="material-icons-round" style="font-size: 2.5rem; animation: spin 1s linear infinite; color: var(--accent-color); margin-bottom: 0.5rem;">sync</span>
+            <p style="font-size: 0.95rem;">Parsing equations.md reference file...</p>
+          </div>
         </div>
       </section>
 
     </main>
 
     <footer>
-      <p>CLEP Study Companion Template • Designed for mobile and desktop</p>
+      <p>CLEP Study Companion Suite • Built with dynamic markdown rendering</p>
     </footer>
 
   </div>
+
+  <!-- Marked.js Markdown Parser CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    async function loadEquations() {
+      try {
+        const response = await fetch('equations.md');
+        if (!response.ok) {
+          throw new Error(`Failed to load equations: ${response.statusText}`);
+        }
+        const markdownText = await response.text();
+        
+        // Configure marked options
+        marked.setOptions({
+          gfm: true,
+          breaks: true
+        });
+
+        // Render Markdown to HTML and inject
+        document.getElementById('equations-content').innerHTML = marked.parse(markdownText);
+      } catch (err) {
+        console.error("CORS or Load Error", err);
+        const isLocalFile = window.location.protocol === 'file:';
+        const errorMsg = isLocalFile 
+          ? "Web browsers block loading external files (equations.md) locally via file:// protocols due to CORS safety settings. Please run a local web server (e.g. <code>python3 -m http.server</code>) or view the deployed page on GitHub Pages to load notes dynamically."
+          : "Could not load the equations guide (equations.md). Please verify the file is present in the repository directory.";
+        
+        document.getElementById('equations-content').innerHTML = `
+          <div class="tip-box" style="border-left-color: #ef4444; background: rgba(239, 68, 68, 0.08); display: flex; gap: 0.75rem;">
+            <span class="material-icons-round" style="color: #ef4444; flex-shrink: 0;">error</span>
+            <p style="color: #fca5a5; margin: 0; font-size: 0.95rem; line-height: 1.5;">${errorMsg}</p>
+          </div>
+        `;
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', loadEquations);
+  </script>
 
 </body>
 </html>
