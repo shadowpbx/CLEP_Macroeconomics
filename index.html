@@ -1321,9 +1321,14 @@
         // Repeat the current track again
         currentLoopIteration++;
         updateLoopBadge();
-        audio.currentTime = 0;
-        playAudio();
-        Log.info(`Starting iteration ${currentLoopIteration} of track ${currentTrackIndex}`);
+        
+        // Use a short timeout to allow the browser to fully complete the ended state transition
+        // and prevent double-firing ended events on mobile browsers.
+        setTimeout(() => {
+          audio.currentTime = 0;
+          playAudio();
+          Log.info(`Starting iteration ${currentLoopIteration} of track ${currentTrackIndex}`);
+        }, 50);
       } else {
         // We reached the loop limit, transition to the next lecture
         Log.info(`Finished all iterations (${targetLoopLimit}). Moving to next track.`);
