@@ -1,6 +1,7 @@
-https://shadowpbx.github.io/CLEP_Macroeconomics/
-
 # CLEP Lecture Audio Player & Playlist Compiler
+
+* **Live Audio Player**: https://shadowpbx.github.io/CLEP_Macroeconomics/
+* **Live Interactive Graph Lab**: https://shadowpbx.github.io/CLEP_Macroeconomics_Graphs/
 
 A premium, mobile-responsive, dark-themed HTML5 audio player designed for studying CLEP lecture courses on the go. It supports lock-screen media controls, custom loop counts, speed adjustments, and auto-resumes playback precisely where you left off. 
 
