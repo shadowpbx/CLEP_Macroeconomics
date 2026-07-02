@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Companion - Written Guide</title>
+  <meta name="description" content="Study notes, written tutorials, and illustrations to accompany the audio lecture series.">
+  
+  <!-- Modern Typography & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-gradient: radial-gradient(circle at 50% 0%, #1e1b4b 0%, #0f172a 100%);
+      --panel-bg: rgba(15, 23, 42, 0.65);
+      --panel-border: rgba(255, 255, 255, 0.08);
+      --accent-color: #8b5cf6; /* Electric Violet */
+      --accent-glow: rgba(139, 92, 246, 0.4);
+      --accent-secondary: #06b6d4; /* Neon Cyan */
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.5), 0 8px 10px -6px rgb(0 0 0 / 0.5);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Outfit', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem 1rem;
+    }
+
+    @media (min-width: 768px) {
+      body {
+        padding: 3rem 1.5rem;
+      }
+    }
+
+    /* Layout Wrapper */
+    .container {
+      width: 100%;
+      max-width: 800px;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    /* Header Section */
+    header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--panel-border);
+      padding-bottom: 1.5rem;
+    }
+
+    .nav-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--accent-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .btn-back:hover {
+      color: #22d3ee;
+    }
+
+    .btn-back .material-icons-round {
+      font-size: 1.2rem;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(to right, #a78bfa, #22d3ee);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    /* Content Cards */
+    .card {
+      background: var(--panel-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--panel-border);
+      border-radius: 20px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    @media (min-width: 768px) {
+      .card {
+        padding: 2.25rem;
+      }
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 0.75rem;
+    }
+
+    h2 .material-icons-round {
+      color: var(--accent-color);
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #e2e8f0;
+    }
+
+    /* List items styling */
+    ul, ol {
+      margin-left: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      color: #cbd5e1;
+      line-height: 1.5;
+    }
+
+    li strong {
+      color: var(--text-main);
+    }
+
+    /* Graphic/Image Placeholder Box */
+    .image-placeholder {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.25);
+      border: 2px dashed rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 3rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .image-placeholder .material-icons-round {
+      font-size: 3rem;
+      color: rgba(255, 255, 255, 0.15);
+    }
+
+    .image-placeholder span.label {
+      font-weight: 500;
+      color: var(--text-main);
+    }
+
+    /* Highlight box style */
+    .tip-box {
+      background: rgba(6, 182, 212, 0.08);
+      border-left: 4px solid var(--accent-secondary);
+      border-radius: 4px 12px 12px 4px;
+      padding: 1rem 1.25rem;
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .tip-box .material-icons-round {
+      color: var(--accent-secondary);
+      flex-shrink: 0;
+    }
+
+    .tip-box p {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: #94d8e6;
+    }
+
+    /* Footer Section */
+    footer {
+      text-align: center;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--panel-border);
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.25);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <header>
+      <div class="nav-row">
+        <a href="index.html" class="btn-back">
+          <span class="material-icons-round">arrow_back</span>
+          Back to Player
+        </a>
+      </div>
+      <h1>Written Study Companion</h1>
+      <p>This is the placeholder template for your course study notes, illustrations, diagrams, and written summaries. Keep this file named <code>companion.html</code> in your project directory to access it anytime from the player.</p>
+    </header>
+
+    <main style="display: flex; flex-direction: column; gap: 2rem;">
+
+      <!-- Card 1: Setup Instruction -->
+      <section class="card">
+        <h2>
+          <span class="material-icons-round">edit_note</span>
+          How to Edit This Companion
+        </h2>
+        <p>To populate this study companion with your actual course materials, follow these simple steps:</p>
+        <ol>
+          <li>Open the file <code>companion.html</code> in your favorite code editor (e.g., VS Code).</li>
+          <li>Modify the title, headings, and text inside the card sections to write your tutorials.</li>
+          <li>Drop diagrams and graphics into your local workspace and link them using standard HTML <code>&lt;img&gt;</code> tags.</li>
+          <li>Save the file and commit/push it to your GitHub repository alongside the player.</li>
+        </ol>
+        <div class="tip-box">
+          <span class="material-icons-round">info</span>
+          <p>You can duplicate the <code>&lt;section class="card"&gt;</code> blocks inside the HTML to create multiple chapters, study units, or reference tables.</p>
+        </div>
+      </section>
+
+      <!-- Card 2: Sample Illustrated Section -->
+      <section class="card">
+        <h2>
+          <span class="material-icons-round">insert_photo</span>
+          Sample Graphic & Illustration Layout
+        </h2>
+        <p>Use the container below as a reference for placing charts, graphs, or formula illustrations in your notes. When you have an image, replace the placeholder box with a standard image tag: <code>&lt;img src="images/filename.png" style="width: 100%; border-radius: 12px;"&gt;</code>.</p>
+        
+        <div class="image-placeholder">
+          <span class="material-icons-round">analytics</span>
+          <span class="label">Course Graphic Placeholder</span>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Width: 100% (Responsive) • Border Radius: 12px</p>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      <p>CLEP Study Companion Template • Designed for mobile and desktop</p>
+    </footer>
+
+  </div>
+
+</body>
+</html>
