@@ -16,7 +16,7 @@ This repository houses the player interface and a helper playlist compiler desig
 * ⚡ **Playback Speed Control**: Speed up or slow down lectures between `0.75x` and `2.0x` speeds.
 * 💾 **Smart Auto-Resume**: The player automatically persists your track index, loop iterations, playback speed, timeline position, and base URL in your browser's local storage. If you refresh or reopen the page, it resumes exactly where you left off.
 * 🔒 **Lock Screen Control Integration**: Fully utilizes the HTML5 browser **Media Session API** so you can play, pause, seek, and skip tracks directly from your phone's lock screen or notification panel.
-* 🔍 **Lecture Title Search**: Instantly filter through your lectures list using the interactive search bar.
+* 📖 **Written Study Companion**: Access course study notes, illustrations, charts, and summaries in a new browser tab (`companion.html`) directly from the player settings without interrupting audio playback.
 * 📝 **Dynamic Metadata Integration**: Instantly changes the course Title and Subtitle dynamically on the page by parsing metadata.
 
 ---
@@ -24,6 +24,7 @@ This repository houses the player interface and a helper playlist compiler desig
 ## 📂 File Architecture
 
 * **`index.html`**: The core player application. 100% self-contained client-side code (HTML, CSS, JS).
+* **`companion.html`**: The written study companion containing course notes, diagrams, and reference tutorials.
 * **`generate_playlist.py`**: A python script that scans your audio files (either locally or on a remote bucket) and writes the catalog files.
 * **`about.txt`**: A metadata text file containing the course Title and Subtitle. Used by the Python generator to dynamically brand the player.
 * **`playlist.json` & `playlist.js`**: Automatically compiled playlist catalogs containing the track order and Cloudflare R2 base URL configuration.
@@ -58,7 +59,7 @@ The Python playlist compiler detects your audio files and creates catalog files 
 The generator automatically parses your folder structure (or falls back to scanning your local MP3 filenames if remote directory listing is disabled) and writes out both `playlist.json` and `playlist.js` with your embedded R2 URL.
 
 ### 4. Deploy the Player on GitHub Pages
-1. Push `index.html`, `about.txt`, `generate_playlist.py`, `playlist.js`, and `playlist.json` to your GitHub repository.
+1. Push `index.html`, `about.txt`, `generate_playlist.py`, `playlist.js`, `playlist.json`, and `companion.html` to your GitHub repository.
 2. In your repository settings under **Pages**, enable GitHub Pages to build from your main branch.
 3. Your audio player will immediately go live!
 
