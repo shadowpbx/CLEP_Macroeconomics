@@ -42,7 +42,7 @@ This directory houses the study tools for the CLEP Macroeconomics exam. Every fu
 ### 2. Mobile Viewport Layout Optimizations
 * **Audio Player**: Uses natural page scrolling with a sticky, full-width, solid slate player card (`#0f172a`, `z-index: 100`) at the very top of the mobile viewport (`top: 0; left: 0; right: 0`). The scrollable playlist slides cleanly behind it and becomes completely hidden.
 * **Graph App**: On screens under 768px, the outer white borders are disabled (`border-0`), padding is reduced, and the inner simulation wrapper double-borders/margins are overridden in CSS to let the SVGs expand to 100% width.
-* **Companion Page**: Styled with high-contrast system fonts, `font-weight: 500` for bold readability matching the Graph App, and reduced card paddings (`1rem`) to maximize space.
+* **Companion Page**: Powered by an interactive multi-theme switcher (Dark Comfort, Warm Sepia, Light Paper, and Auto). Styled with high-contrast system fonts, `font-weight: 500` for bold readability, and reduced card paddings (`1rem`) and body margins (`0.25rem`) on mobile to maximize horizontal width.
 
 ---
 
