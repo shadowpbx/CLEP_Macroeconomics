@@ -223,3 +223,18 @@
 
 *   **The Exam Trick:** If the exam tells you a country has a **deficit** in its Current Account, you instantly know it *must* have a **surplus** in its Financial Account to balance it out. If one goes down, the other goes up!
 
+***
+
+You need to know exactly 11 graphs and visual models.
+
+1. Production Possibilities Curve (PPC)
+2. Supply and Demand (Single Market)
+3. The Circular Flow Model
+4. Aggregate Demand and Aggregate Supply (AD/AS)
+5. The Money Market
+6. The Loanable Funds Market
+7. The Phillips Curve (Short-Run and Long-Run)
+8. The Foreign Exchange Market (FOREX)
+9. The Business Cycle
+10. The Laffer Curve
+11. The Keynesian Cross (Aggregate Expenditure Model)
